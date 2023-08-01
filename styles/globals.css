@@ -9,3 +9,16 @@ body{
   max-width: 100%;
   overflow-x: hidden;
 }
+.productcards-slider .slick-track{
+  display: flex;
+  column-gap: 30px;
+}
+.productcards-slider .slick-track:before, .productcards-slider .slick-track:after{
+  display: none;
+}
+.product-card .pc_add-to-card-wrap{
+  transform: translateY(120%);
+}
+.product-card:hover .pc_add-to-card-wrap{
+  transform: translateY(0%);
+}
