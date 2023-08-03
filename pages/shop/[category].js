@@ -1,7 +1,7 @@
 import AllProducts from "@/components/shop/AllProducts";
 
 
-const Shop = ({products, title}) => {
+const ShopCategory = ({products,title}) => {
   return (
     <>
       <AllProducts products={products} title={title} />
@@ -9,16 +9,17 @@ const Shop = ({products, title}) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const {category} = context.query;
   // Fetch products data from the API
-  const productResponse = await fetch("https://fakestoreapi.com/products");
+  const productResponse = await fetch(`https://fakestoreapi.com/products/category/${category}`);
   const products = await productResponse.json(); 
   return {
     props: {
       products,
-      title: 'All Products'
+			title: category
     },
   };
 }
 
-export default Shop;
+export default ShopCategory;

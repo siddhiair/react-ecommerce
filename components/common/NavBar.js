@@ -2,15 +2,17 @@ import React from 'react';
 import Link from 'next/link';
 import {BiShoppingBag,BiExclude} from 'react-icons/bi';
 import { useRouter } from "next/router";
+import useUpdateCart from "@/hooks/useUpdateCart";
 
 export default function NavBar() {
 	const router = useRouter();
+	const {cartCount} = useUpdateCart();
 
   return (
     <header className="text-gray-600 body-font">
 			<div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
 				<Link href="/" className="font-bold text-gray-900 inline-flex items-center gap-x-1">
-					<BiExclude />
+					<BiExclude />  
 					ReactOnlineStore
 				</Link>
 				<nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
@@ -20,7 +22,7 @@ export default function NavBar() {
 				</nav>
 				<div>
 					<span className='inline-flex items-center gap-x-1'>
-						<BiShoppingBag /> Cart
+						<BiShoppingBag /> Cart ({cartCount})
 					</span>
 				</div>
 			</div>

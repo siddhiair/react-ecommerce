@@ -16,7 +16,7 @@ const Home = ({products,categories}) => {
 
 export async function getServerSideProps() {
   // Fetch products data from the API
-  const productResponse = await fetch("https://fakestoreapi.com/products?limit=6");
+  const productResponse = await fetch("https://fakestoreapi.com/products?limit=6&sort=asc");
   const products = await productResponse.json();
 
   const catResponse = await fetch("https://fakestoreapi.com/products/categories");

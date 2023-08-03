@@ -1,9 +1,18 @@
 import React from 'react';
 import {AiFillStar} from 'react-icons/ai';
 import { IconContext } from "react-icons";
+import useUpdateCart from "@/hooks/useUpdateCart";
 
-const Product = ({data}) => {
-  console.log(data)
+const Product = ({productDetails:data}) => {
+  const [addToCart,isLoading] = useUpdateCart();
+
+	const handleAddToCart = () => {
+		addToCart({
+			"userId":1,
+			"date":"2020-02-03",
+			"products":[{productId:data.id,quantity:1}]
+		})
+	}
   return (
     <>
     <section className="text-gray-600 body-font overflow-hidden">
@@ -31,7 +40,7 @@ const Product = ({data}) => {
               <span className="title-font font-medium text-2xl text-gray-900">${data.price}</span>
             </div>
             <div className="mt-6">
-              <button className="w-full text-white bg-blue-800 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded">Add to Cart</button>
+              <button className="pc_add-to-cart-btn w-full text-white bg-blue-800 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded" onClick={handleAddToCart} disabled={isLoading}>{isLoading ? 'Adding to Cart...' : 'Add to cart'}</button>
             </div>
           </div>
         </div>
@@ -45,10 +54,10 @@ export async function getServerSideProps(context) {
   const {id} = context.params;
   //Fetch products data from the API
   const productResponse = await fetch(`https://fakestoreapi.com/products/${id}`);
-  const data = await productResponse.json(); 
+  const productDetails = await productResponse.json(); 
   return {
     props: {
-      data
+      productDetails
     },
   };
 }
