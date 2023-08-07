@@ -1,17 +1,15 @@
 import React from 'react';
 import {AiFillStar} from 'react-icons/ai';
 import { IconContext } from "react-icons";
-import useUpdateCart from "@/hooks/useUpdateCart";
+//import useUpdateCart from "@/hooks/useUpdateCart";
+import { useState } from 'react';
 
 const Product = ({productDetails:data}) => {
-  const [addToCart,isLoading] = useUpdateCart();
+  //const {addToCart,isLoading} = useUpdateCart();
+  const [isLoading, setIsLoading] = useState(false)
 
 	const handleAddToCart = () => {
-		addToCart({
-			"userId":1,
-			"date":"2020-02-03",
-			"products":[{productId:data.id,quantity:1}]
-		})
+		console.log("test")
 	}
   return (
     <>
@@ -50,10 +48,21 @@ const Product = ({productDetails:data}) => {
   )
 }
 
-export async function getServerSideProps(context) { 
-  const {id} = context.params;
+export async function getStaticPaths() {
+  const res = await fetch('https://fakestoreapi.com/products')
+  const products = await res.json()
+
+  const paths = products.map((prod) => ({
+    params: { id: prod.id.toString(), category: prod.category },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({params}) { 
+  //const {id} = context.params;
   //Fetch products data from the API
-  const productResponse = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const productResponse = await fetch(`https://fakestoreapi.com/products/${params.id}`);
   const productDetails = await productResponse.json(); 
   return {
     props: {

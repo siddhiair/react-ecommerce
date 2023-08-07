@@ -9,15 +9,25 @@ const ShopCategory = ({products,title}) => {
   )
 }
 
-export async function getServerSideProps(context) {
-  const {category} = context.query;
+export async function getStaticPaths() {
+  const res = await fetch('https://fakestoreapi.com/products')
+  const products = await res.json()
+
+  const paths = products.map((prod) => ({
+    params: {category:prod.category },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({params}) {
   // Fetch products data from the API
-  const productResponse = await fetch(`https://fakestoreapi.com/products/category/${category}`);
+  const productResponse = await fetch(`https://fakestoreapi.com/products/category/${params.category}`);
   const products = await productResponse.json(); 
   return {
     props: {
       products,
-			title: category
+			title: params.category
     },
   };
 }

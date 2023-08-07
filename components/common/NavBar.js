@@ -6,7 +6,7 @@ import useUpdateCart from "@/hooks/useUpdateCart";
 
 export default function NavBar() {
 	const router = useRouter();
-	const {cartCount} = useUpdateCart();
+	const {cartItems} = useUpdateCart();
 
   return (
     <header className="text-gray-600 body-font">
@@ -22,7 +22,7 @@ export default function NavBar() {
 				</nav>
 				<div>
 					<span className='inline-flex items-center gap-x-1'>
-						<BiShoppingBag /> Cart ({cartCount})
+						<BiShoppingBag /> Cart ({cartItems.length})
 					</span>
 				</div>
 			</div>
