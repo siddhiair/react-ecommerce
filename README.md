@@ -28,6 +28,6 @@ npm run dev
 - Open your browser and visit http://localhost:3000 to view the web application.
 
 ### Acknowledgments
-This project uses the (FakeStore API)[https://fakestoreapi.com/] to fetch mock product data. Special thanks to the creators of FakeStore API for providing this useful service.
+This project uses the [FakeStore API](https://fakestoreapi.com/) to fetch mock product data. Special thanks to the creators of FakeStore API for providing this useful service.
 
 The project was built following the tutorials and documentation of Next.js, React, and Tailwind CSS.
