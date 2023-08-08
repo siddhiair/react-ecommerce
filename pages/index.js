@@ -4,12 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomeCategories from "@/components/home/HomeCategories";
 
-const Home = ({products,categories}) => {
+const Home = ({products,categories,handleCart}) => {
   return (
     <>
       <HomeBanner />
       <HomeCategories categories={categories} />
-      <HomeProducts products={products} />
+      <HomeProducts products={products}  />
     </>
   )
 }

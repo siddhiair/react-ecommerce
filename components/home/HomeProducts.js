@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from "react-slick";
 import ProductCard from '../common/ProductCard';
 
-const HomeProducts = ({products}) => {
+const HomeProducts = ({products,handleCart}) => {
 	var settings = {
 		dots: true,
 		infinite: false,

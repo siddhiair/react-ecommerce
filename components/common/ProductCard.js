@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {BsCartPlus} from 'react-icons/bs';
-import useUpdateCart from "@/hooks/useUpdateCart";
+import { useAppState } from "@/context/AppStateContext";
 
 const ProductCard = ({data}) => {
-	const {addToCart,isLoading,cartItems} = useUpdateCart();
-
-	const handleAddToCart = () => {
-		addToCart({
-			userId:5,
-			date:new Date(),
-			products:[{productId:data.id,quantity:1}]
-		});
+	const {addToCart,isLoading} = useAppState(0);
+	const handleCart = () => {
+		addToCart(data)
 	}
   return(
 		<div className="product-card">
@@ -21,8 +16,8 @@ const ProductCard = ({data}) => {
 				</Link>
 
 				<div className="pc_add-to-card-wrap transition-transform absolute left-auto lg:left-0 right-0 bottom-0 z-10 p-3">
-					<button type="button" className="pc_add-to-cart-btn w-full hidden lg:flex bg-white px-4 py-3 items-center justify-center gap-x-2 rounded shadow-xl" onClick={handleAddToCart} disabled={isLoading}><BsCartPlus /> {isLoading ? 'Adding to Cart...' : 'Add to cart'}</button>
-					<button type="button" className="pc_add-to-cart-btn lg:hidden bg-white p-4  rounded-full shadow-xl" onClick={handleAddToCart} disabled={isLoading}><BsCartPlus /></button>
+					<button type="button" className="pc_add-to-cart-btn w-full hidden lg:flex bg-white px-4 py-3 items-center justify-center gap-x-2 rounded shadow-xl" onClick={handleCart} disabled={isLoading}><BsCartPlus /> {isLoading ? 'Adding to Cart...' : 'Add to cart'}</button>
+					<button type="button" className="pc_add-to-cart-btn lg:hidden bg-white p-4  rounded-full shadow-xl" onClick={handleCart} disabled={isLoading}><BsCartPlus /></button>
 				</div>
 			</div>
 			<div className="mt-4">

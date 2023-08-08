@@ -1,15 +1,12 @@
 import React from 'react';
 import {AiFillStar} from 'react-icons/ai';
 import { IconContext } from "react-icons";
-//import useUpdateCart from "@/hooks/useUpdateCart";
-import { useState } from 'react';
+import { useAppState } from "@/context/AppStateContext";
 
 const Product = ({productDetails:data}) => {
-  //const {addToCart,isLoading} = useUpdateCart();
-  const [isLoading, setIsLoading] = useState(false)
-
-	const handleAddToCart = () => {
-		console.log("test")
+  const {addToCart,isLoading} = useAppState(0);
+	const handleCart = () => {
+		addToCart(data)
 	}
   return (
     <>
@@ -38,7 +35,7 @@ const Product = ({productDetails:data}) => {
               <span className="title-font font-medium text-2xl text-gray-900">${data.price}</span>
             </div>
             <div className="mt-6">
-              <button className="pc_add-to-cart-btn w-full text-white bg-blue-800 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded" onClick={handleAddToCart} disabled={isLoading}>{isLoading ? 'Adding to Cart...' : 'Add to cart'}</button>
+              <button className="pc_add-to-cart-btn w-full text-white bg-blue-800 border-0 py-2 px-6 focus:outline-none hover:bg-blue-900 rounded" onClick={handleCart} disabled={isLoading}>{isLoading ? 'Adding to Cart...' : 'Add to cart'}</button>
             </div>
           </div>
         </div>
