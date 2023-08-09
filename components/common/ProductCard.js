@@ -4,9 +4,12 @@ import {BsCartPlus} from 'react-icons/bs';
 import { useAppState } from "@/context/AppStateContext";
 
 const ProductCard = ({data}) => {
-	const {addToCart,isLoading} = useAppState(0);
+	const [isLoading, setIsLoading] = useState(false);
+	const {addToCart} = useAppState(0);
 	const handleCart = () => {
-		addToCart(data)
+		setIsLoading(true);
+		addToCart(data);
+		setTimeout(()=>setIsLoading(false),500)
 	}
   return(
 		<div className="product-card">

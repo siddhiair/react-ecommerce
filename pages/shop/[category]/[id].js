@@ -2,11 +2,15 @@ import React from 'react';
 import {AiFillStar} from 'react-icons/ai';
 import { IconContext } from "react-icons";
 import { useAppState } from "@/context/AppStateContext";
+import { useState } from 'react';
 
 const Product = ({productDetails:data}) => {
-  const {addToCart,isLoading} = useAppState(0);
+  const [isLoading, setIsLoading] = useState(false);
+	const {addToCart} = useAppState(0);
 	const handleCart = () => {
-		addToCart(data)
+		setIsLoading(true);
+		addToCart(data);
+		setTimeout(()=>setIsLoading(false),500)
 	}
   return (
     <>
