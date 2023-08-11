@@ -9,7 +9,12 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }) {
   const [cartItems,setCartItems] = useState([]);
-
+  const hideTogglePanel = () => {
+    const targetEls = document.querySelectorAll('.bg-overlay, .toggle-panel');
+		targetEls.forEach(targetEl => {
+				targetEl.classList.remove("in");
+		});
+  }
   return(
     <AppStateProvider>
       <div className={`flex flex-col min-h-screen ${inter.className}`}>
@@ -19,6 +24,7 @@ export default function App({ Component, pageProps }) {
         </main>
         <SiteFooter />
       </div>
+      <div className='bg-overlay' onClick={hideTogglePanel}></div>
     </AppStateProvider>
   );
 }

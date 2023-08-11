@@ -1,6 +1,9 @@
 # Next.js with FakeStore API Project
 This is a sample Next.js project that demonstrates how to fetch data from the FakeStore API and build a simple e-commerce web application. The FakeStore API provides mock product data that we use to display products and their details on our website.
 
+### Demo
+Check the live demo [here]()
+
 ### Technologies Used
 - Next.js
 - React

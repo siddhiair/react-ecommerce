@@ -52,6 +52,22 @@ body{
 .cart-sidepanel.in{
   transform: none;
 }
+.bg-overlay{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  opacity: 0;
+  background: rgba(0,0,0,.3);
+  visibility: hidden;
+  transition: all .3s;
+}
+.bg-overlay.in{
+  opacity: 1;
+  visibility: visible;
+}
 @media screen and (min-width:1024px){
   .product-card .pc_add-to-card-wrap{
     transform: translateY(120%);

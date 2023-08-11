@@ -11,16 +11,13 @@ export default function NavBar() {
 	const {cartCount} = useAppState();
 
 	const toggleSidebar = (el) => {
-		const targetEl = document.querySelector(`.${el}`);
-		if(targetEl.classList.contains("in")){
-			targetEl.classList.remove("in")
-		}
-		else{
-			targetEl.classList.add("in")
-		}
+		const targetEls = document.querySelectorAll(`.${el}, .bg-overlay`);
+		targetEls.forEach(targetEl => {
+				targetEl.classList.toggle("in");
+		});
 	}
   return (
-    <header className="text-gray-600 body-font">
+    <header className="text-gray-600 body-font relative bg-white z-[50]">
 			<div className="container mx-auto">
 				<div className='flex items-center justify-between gap-x-5 px-4 py-3'>
 					<div className='md:order-1'>
@@ -37,7 +34,7 @@ export default function NavBar() {
 							<BiMenu />
 						</button>
 					</div>
-					<div className='site-nav md:order-2'>
+					<div className='site-nav md:order-2 toggle-panel'>
 						<nav className="md:flex flex-wrap items-center text-lg md:text-base text-center">
 							<Link href="/shop" className={`block mr-5 py-2 hover:text-gray-900 ${router.pathname == "/shop" ? "font-semibold" : ""}`}>Shop</Link>
 							<Link href="/about" className={`block mr-5 py-2 hover:text-gray-900 ${router.pathname == "/about" ? "font-semibold" : ""}`}>About</Link>

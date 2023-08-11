@@ -6,7 +6,7 @@ import { useAppState } from "@/context/AppStateContext";
 const CartSidePanel = () => {
 	const {cartCount, cartItems, clearCart} = useAppState();
   return(
-		<div className='cart-sidepanel'>						
+		<div className='cart-sidepanel toggle-panel'>						
 			{cartCount===0 && 
 				<div className='text-lg text-center'>Cart is empty</div>
 			}
