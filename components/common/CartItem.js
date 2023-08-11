@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAppState } from "@/context/AppStateContext";
 
 const CartItem = ({data}) => {
-	const {removeCartItem, addToCart} = useAppState();
+	const {removeCartItem, addToCart,cartCount} = useAppState();
 	const [qtyInput, setQtyInput] = useState(data.quantity);
+
+	useEffect(()=>{
+		setQtyInput(data.quantity);
+	},[cartCount])
+
 	const removeItem = () => {
 		const inputEl = document.querySelector(`.input-p${data.id}`);
-		const qty = (parseInt(inputEl.value) - 1 < 0) ? 0 : parseInt(inputEl.value) - 1;
+		const qty = Math.max(parseInt(inputEl.value) - 1, 0);
 		setQtyInput(qty);
 		removeCartItem(data.id,qty)
 	}
